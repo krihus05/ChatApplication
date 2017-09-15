@@ -12,16 +12,23 @@ and open the template in the editor.
         <link rel="stylesheet" href="style.css">
     </head>
     <body onload="checkCookie()">
-        <form name="loginform" onSubmit="return logout();" action="index.html" method="post">
-            <input type="submit" value="Log Out"/>
+        <header>
+            <h1>Chat Application</h1>
+        </header>
+        
+        
+        
+        <form id="users-form" name="loginform" onSubmit="return logout();" action="index.html" method="post">
+            <label id="name">Username</label>
+            <input id="logout" type="submit" value="Log Out"/>
         </form>
         
         <br>
-        
+        <!--
         <div id="name">
             yourname
         </div>
-        
+        -->
         <br>
         
         <div id="users">
@@ -34,7 +41,7 @@ and open the template in the editor.
             function logout() {
                 var username = getCookie("ChatApp");
                 //alert(username);
-                setCookie("ChatApp", username, 50);
+                setCookie("ChatApp", username, 260);
                 return true;       
             }
             

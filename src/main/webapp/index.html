@@ -7,25 +7,20 @@
     </head>
     <body>
         <header>
-            <h1>Fancy Logo</h1>
+            <h1>Chat Application</h1>
         </header>
         <section>
             <!--This is the main body of the application<br>
             This is where the people that are online will be listed! Woo!-->
-            <br><br><br><br><br><br><br><br>
-
 
             <form name="loginform" onSubmit="return validateForm();" action="chatapplication.html" method="post">
-                <label>User name</label>
-                <input type="text" name="usr" placeholder="username"> 
-                <label>Password</label>
-                <input type="password" name="pword" placeholder="password">
-                <input type="submit" value="Login"/>
+                <label>Username</label><br>
+                <input type="text" name="usr" placeholder="username"><br>
+                <label>Password</label><br>
+                <input type="password" name="pword" placeholder="password"><br>
+                <input id="loginButton" type="submit" value="Login"/>
             </form>
 
-
-
-            <br><br><br><br><br><br><br><br><br>
         </section>
 
         <script>
@@ -41,7 +36,7 @@
                 }
                  */
                 if(un != "" && pw != ""){
-                    setCookie("ChatApp", un, 30);
+                    setCookie("ChatApp", un, 200);
                     return true;
                 }   
                 else {
