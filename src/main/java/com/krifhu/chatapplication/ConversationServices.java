@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import jdk.nashorn.internal.parser.JSONParser;
 
 /**
  *
@@ -65,6 +66,17 @@ public class ConversationServices {
             m.setReceiver(receiver);
             m.setMessageBody(messageBody);
         }
-        return Response.ok(sender).build();
+        
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        JsonObject obj1 = Json.createObjectBuilder()
+                .add("Status", "OK")
+                .build();
+        builder.add(obj1);
+        //JSONParser parser = new JSONParser();
+        //JSONObject json = (JSONObject) parser.parse(stringToParse);
+        //JSONObject jsonObj = new JSONObject(sender);
+        
+        //return Response.ok(sender).build();
+        return Response.ok(builder.build()).build();
     }  
 }

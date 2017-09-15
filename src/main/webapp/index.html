@@ -3,8 +3,68 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <header>
+            <h1>Fancy Logo</h1>
+        </header>
+        <section>
+            <!--This is the main body of the application<br>
+            This is where the people that are online will be listed! Woo!-->
+            <br><br><br><br><br><br><br><br>
+
+
+            <form name="loginform" onSubmit="return validateForm();" action="chatapplication.html" method="post">
+                <label>User name</label>
+                <input type="text" name="usr" placeholder="username"> 
+                <label>Password</label>
+                <input type="password" name="pword" placeholder="password">
+                <input type="submit" value="Login"/>
+            </form>
+
+
+
+            <br><br><br><br><br><br><br><br><br>
+        </section>
+
+        <script>
+            function validateForm() {
+                var un = document.loginform.usr.value;
+                var pw = document.loginform.pword.value;
+                /*
+                var username = "username"; 
+                var password = "password";
+                if (((un == username) && (pw == password)) || ((un == "test") && (pw == "test"))) {
+                    setCookie("ChatApp", username, 30);
+                    return true;
+                }
+                 */
+                if(un != "" && pw != ""){
+                    setCookie("ChatApp", un, 30);
+                    return true;
+                }   
+                else {
+                    alert ("Login was unsuccessful, please check your username and password");
+                    return false;
+                }
+            }
+            function setCookie(cname, cvalue, exseconds) {
+                var d = new Date();
+                //d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                d.setTime(d.getTime() + (exseconds * 1000));
+                var expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                //alert("Cookie made");
+            }
+
+            
+            
+            
+            
+            
+        </script>
+        
+
     </body>
 </html>
