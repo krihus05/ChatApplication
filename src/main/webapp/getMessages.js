@@ -1,11 +1,17 @@
 
 class ChatAppMessages {
+    
+    //var lastMessageID = 0;
+    
     constructor() {
         this.messages = document.querySelector("#messages");
         this.message = document.querySelector("#message");
 
         var sender = this.getCookie("ChatApp");
         var receiver = this.getQueryVariable("receiver");
+        
+        this.lastMessageID = 0;
+
 
         this.message.onchange = event => {
             fetch('api/conversations/add?sender=' + sender + '&receiver=' + receiver + '&messageBody=' + event.target.value,
@@ -63,20 +69,57 @@ class ChatAppMessages {
                     }
                     throw new Error("Failed to load list of users");
                 })
-                .then(json => this.addMessages(json))
+                .then(json => this.addMessages(json, sender, receiver))
                 .catch(e => console.log("Error!: " + e.message));
     }
-    addMessages(json) {
-        this.messages.innerHTML = '';
+    addMessages(json, sender, receiver) {
+        if(this.lastMessageID == 0){
+            this.messages.innerHTML = '';
+        }
+        
+        //console.log("Lengde: " + (json.length - 1));
+        console.log(this.lastMessageID);
         for (let i = 0; i < json.length; i++) {
-            //console.log(json[i].user);
-            let li = document.createElement('li');
+            if(this.lastMessageID < json[i].messageID){
+                let li = document.createElement('li');
+                li.innerHTML = json[i].messageBody;
+                if(json[i].sender == sender){
+                li.setAttribute("id", "left-float");
+                }
+                else{
+                    li.setAttribute("id", "right-float"); 
+                }
+                
+                this.messages.appendChild(li);
+                this.scrollToBottom();
+                
+                this.lastMessageID = json[i].messageID;
+            }
+            
+             // if json i messageid is smaller then lastmessageid then add new message to conversation 
+             // if not then do nothing!
+             
+                    
+            //console.log("i: " + i);
+            //let li = document.createElement('li');
+            /*
             li.innerHTML = json[i].messageBody;
-            //let a = document.createElement('a');
-            //a.href = "conversation.html?receiver=" + json[i].user;
-            //a.appendChild(li);                     
-            this.messages.appendChild(li);
-            this.scrollToBottom();
+            if(json[i].sender == sender){
+                li.setAttribute("id", "left-float");
+            }else{
+               li.setAttribute("id", "right-float"); 
+            }
+            */
+           /*
+            if(i == (json.length - 1)){
+                this.lastMessageID = json[i].messageID;
+                console.log(this.lastMessageID);
+            }
+            */
+            //console.log(json[i].messageID + " " + json[i].sender + " " + json[i].receiver + " " + json[i].messageBody + " " + json[i].version);
+                   
+            //this.messages.appendChild(li);
+            //this.scrollToBottom();
         }
     }
 

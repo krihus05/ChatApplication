@@ -8,3 +8,112 @@ and open the template in the editor.
     Author     : Kristian
 */
 
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #26272A;   
+}
+
+header{
+    margin: 0;
+    padding: 0;
+    /*height: 150px;*/
+    height: 20vh;
+    font-size: 40px;
+    background-color: #26272A;
+}
+
+h1{
+    margin: 0;
+    padding: 0;
+    padding-top: 30px;
+    padding-left: 30px;
+    color: white;
+}
+
+label{
+    font-size: 30px;
+    color: white;
+}
+
+#users-form{
+    width: 75%;
+    margin: auto;
+    padding: 0;
+}
+
+#name{
+    margin: 0 10% 0 0;
+    float: left;
+}
+
+#logout{
+    font-size: 15px;
+    margin: 0px 0 0px 0;
+    width: 10%;
+    height: 40px;
+    background-color: #26272A;
+    border-color: #26272A;
+    box-shadow: 0px 0px 0px #26272A;
+    color: white;
+    float: right;
+}
+
+.container{
+    width: 50vh;
+    margin: auto;
+    margin-top: 5vh;
+    background-color: #3D3E45;
+    border: 10px solid #3D3E45;
+    border-radius: 5px;
+    
+}
+
+#messages{
+    
+    overflow-y: scroll;
+    background-color: #3D3E45;
+    color: white;
+    height: 50vh;
+    
+  
+    
+}
+
+#message{
+    margin: 10px 0;
+    padding: 0 15px 0 15px;
+    width: 93%;
+    height: 5vh;
+}
+
+#left-float{
+    list-style: none;
+    margin: 0;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    float: left;
+    clear: both;
+    /*background-color: #26272A;*/
+    background-color: #726A7E;
+    border: 2px solid #726A7E;
+    border-radius: 5px;
+}
+
+#right-float{
+    list-style: none;
+    margin: 0;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    float: right;
+    clear: both;
+    background-color: #988F71;
+    border: 2px solid #988F71;
+    border-radius: 5px;   
+}
+
+

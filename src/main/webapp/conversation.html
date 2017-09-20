@@ -11,15 +11,72 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styleConversation.css">
     </head>
-    <body>
+    <body onload="checkCookie()">
+        <header>
+            <h1>Chat Application</h1>
+        </header>
+        
+        <form id="users-form" name="loginform" onSubmit="return logout();" action="index.html" method="post">
+            <!--<label id="name">Username</label>-->
+            <input id="logout" type="submit" value="Log Out"/>
+        </form>
+        
+        <br>
+        <br>
+        
         <div class="container">
-            <div id="messages" style="overflow-y: scroll; height:400px;">
+            <div id="messages">
                 <br><br>Messages will be displayed here!<br><br>            
             </div>
             <input id="message" type="text"/>
         </div>
         
-        
+        <script>
+            function logout() {
+                var username = getCookie("ChatApp");
+                //alert(username);
+                setCookie("ChatApp", username, 260);
+                return true;       
+            }
+            
+            function checkCookie() {
+                var user = getCookie("ChatApp");
+                if (user != "") {
+                    //document.getElementById("name").innerHTML="Welcome, "+ user;
+                    //alert("Welcome again " + user);
+                } else {
+                    window.location.href = 'index.html';
+                    //user = prompt("Please enter your name:", "");
+                    //if (user != "" && user != null) {
+                    //    setCookie("username", user, 365);
+                    //}
+                }
+            }
+            
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            
+            function setCookie(cname, cvalue, exseconds) {
+                var d = new Date();
+                //d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                d.setTime(d.getTime() - (exseconds * 1000));
+                var expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                //alert("Cookie deleted");
+            }
+        </script>
         <script src="getMessages.js"></script>
     </body>
 </html>
