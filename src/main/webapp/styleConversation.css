@@ -19,7 +19,7 @@ header{
     padding: 0;
     /*height: 150px;*/
     height: 20vh;
-    font-size: 40px;
+    font-size: 20px;
     background-color: #26272A;
 }
 
@@ -28,7 +28,7 @@ h1{
     padding: 0;
     padding-top: 30px;
     padding-left: 30px;
-    color: white;
+    color: grey;
 }
 
 label{
@@ -76,8 +76,10 @@ label{
     margin: auto;
     margin-top: 5vh;
     background-color: #3D3E45;
+    /*border: 10px solid #3D3E45;
+    border-radius: 5px;*/
     border: 10px solid #3D3E45;
-    border-radius: 5px;
+    border-radius: 15px;
     
 }
 

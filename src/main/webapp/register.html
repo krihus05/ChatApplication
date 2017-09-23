@@ -7,11 +7,9 @@
     </head>
     <body>
         <header>
-            <h1>Chat Application</h1>
+            <!--<h1>Chat Application</h1>-->
         </header>
         <section>
-            <!--This is the main body of the application<br>
-            This is where the people that are online will be listed! Woo!-->
 
             <form id="login" name="loginform" onSubmit="return validateForm();" action="index.html" method="post">
                 <label>Username</label><br>
@@ -51,19 +49,14 @@
                     })
                     .catch(exception => console.log("Error: " + exception));
                     
-                    alert("Registration was successfull!");
+                    //alert("Registration was successfull!");
                     return true;
                 }   
                 else {
                     alert ("Registration was unsuccessful, please check your username and password");
                     return false;
                 }
-            }
-            
-            
-            
-            
-            
+            }   
         </script>
         
 
