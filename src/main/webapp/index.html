@@ -13,18 +13,26 @@
             <!--This is the main body of the application<br>
             This is where the people that are online will be listed! Woo!-->
 
-            <form name="loginform" onSubmit="return validateForm();" action="chatapplication.html" method="post">
+            <form id="login" name="loginform" onSubmit="return validateForm();" action="chatapplication.html" method="post">
                 <label>Username</label><br>
                 <input type="text" name="usr" placeholder="username"><br>
                 <label>Password</label><br>
                 <input type="password" name="pword" placeholder="password"><br>
-                <input id="loginButton" type="submit" value="Login"/>
+                <input id="loginButton" type="submit" name="Login" value="Login"/>
+            </form>
+            
+            <form id="register" action="register.html" method="post">
+                 <label>Do not have an account?</label><br>
+                <input id="registerButton"  type="submit" name="Register" value="Register"/>
             </form>
 
         </section>
 
         <script>
             function validateForm() {
+                
+                //need to check if credentials match the database!
+                
                 var un = document.loginform.usr.value;
                 var pw = document.loginform.pword.value;
                 /*
@@ -52,7 +60,6 @@
                 document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
                 //alert("Cookie made");
             }
-
             
             
             

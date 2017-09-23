@@ -36,7 +36,7 @@ label{
     color: white;
 }
 
-#users-form{
+.users-form{
     width: 75%;
     margin: auto;
     padding: 0;
@@ -44,6 +44,18 @@ label{
 
 #name{
     margin: 0 10% 0 0;
+    float: left;
+}
+
+#back-button{
+    font-size: 15px;
+    margin: 0px 0 0px 0;
+    width: 10%;
+    height: 40px;
+    background-color: #26272A;
+    border-color: #26272A;
+    box-shadow: 0px 0px 0px #26272A;
+    color: white;
     float: left;
 }
 
@@ -70,7 +82,8 @@ label{
 }
 
 #messages{
-    
+    width: 100%;
+    overflow-x: hidden;
     overflow-y: scroll;
     background-color: #3D3E45;
     color: white;
@@ -87,12 +100,14 @@ label{
     height: 5vh;
 }
 
-#left-float{
+.left-float{
+    
     list-style: none;
     margin: 0;
     margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-right: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     padding: 10px;
     float: left;
     clear: both;
@@ -102,18 +117,17 @@ label{
     border-radius: 5px;
 }
 
-#right-float{
+.right-float{
     list-style: none;
     margin: 0;
+    margin-left: 50px;
     margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     padding: 10px;
     float: right;
     clear: both;
     background-color: #988F71;
     border: 2px solid #988F71;
-    border-radius: 5px;   
+    border-radius: 5px;
 }
-
-

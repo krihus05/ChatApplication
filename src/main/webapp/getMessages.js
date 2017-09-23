@@ -84,10 +84,10 @@ class ChatAppMessages {
                 let li = document.createElement('li');
                 li.innerHTML = json[i].messageBody;
                 if(json[i].sender == sender){
-                li.setAttribute("id", "left-float");
+                li.setAttribute("class", "left-float");
                 }
                 else{
-                    li.setAttribute("id", "right-float"); 
+                    li.setAttribute("class", "right-float"); 
                 }
                 
                 this.messages.appendChild(li);

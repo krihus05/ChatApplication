@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Chat Application</h1>
+        </header>
+        <section>
+            <!--This is the main body of the application<br>
+            This is where the people that are online will be listed! Woo!-->
+
+            <form id="login" name="loginform" onSubmit="return validateForm();" action="index.html" method="post">
+                <label>Username</label><br>
+                <input type="text" name="usr" placeholder="username"><br>
+                <label>Password</label><br>
+                <input type="password" name="pword" placeholder="password"><br>
+                <input id="loginButton" type="submit" name="Login" value="Register"/>
+            </form>
+
+        </section>
+
+        <script>
+            function validateForm() {
+                
+                var un = document.loginform.usr.value;
+                var pw = document.loginform.pword.value;
+
+                if(un != "" && pw != ""){
+                    
+                    //add user
+                    
+                     fetch('api/users/add?username=' + un + '&password=' + pw,
+                    {
+                        method: 'POST',
+                        //body : JSON.stringify(new Message('Kristian',event.target.value)),
+                        //headers: {'Content-Type' : 'application/json; charset=UTF-8'}
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+
+                        throw new Error("Failed to send message " + event.target.value);
+                    })
+                    .then(message => {
+                        this.message.value = "";
+                    })
+                    .catch(exception => console.log("Error: " + exception));
+                    
+                    alert("Registration was successfull!");
+                    return true;
+                }   
+                else {
+                    alert ("Registration was unsuccessful, please check your username and password");
+                    return false;
+                }
+            }
+            
+            
+            
+            
+            
+        </script>
+        
+
+    </body>
+</html>

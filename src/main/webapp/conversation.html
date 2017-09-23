@@ -16,7 +16,11 @@ and open the template in the editor.
             <h1>Chat Application</h1>
         </header>
         
-        <form id="users-form" name="loginform" onSubmit="return logout();" action="index.html" method="post">
+        <form class="users-form" name="goBack" action="chatapplication.html" method="post">
+            <input id="back-button" type="submit" value="Back">
+        </form> 
+        
+        <form class="users-form" name="loginform" onSubmit="window.logout();" action="index.html" method="post"> 
             <!--<label id="name">Username</label>-->
             <input id="logout" type="submit" value="Log Out"/>
         </form>
@@ -33,6 +37,7 @@ and open the template in the editor.
         
         <script>
             function logout() {
+                //alert("Login you out, deleting cookies");
                 var username = getCookie("ChatApp");
                 //alert(username);
                 setCookie("ChatApp", username, 260);
@@ -45,6 +50,7 @@ and open the template in the editor.
                     //document.getElementById("name").innerHTML="Welcome, "+ user;
                     //alert("Welcome again " + user);
                 } else {
+                    //alert("No Cookie Found, redirecting");
                     window.location.href = 'index.html';
                     //user = prompt("Please enter your name:", "");
                     //if (user != "" && user != null) {
