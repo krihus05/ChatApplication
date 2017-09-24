@@ -1,7 +1,4 @@
-
 class ChatAppMessages {
-    
-    //var lastMessageID = 0;
     
     constructor() {
         this.messages = document.querySelector("#messages");
@@ -17,7 +14,7 @@ class ChatAppMessages {
             fetch('api/conversations/add?sender=' + sender + '&receiver=' + receiver + '&messageBody=' + event.target.value,
                     {
                         method: 'POST',
-                        //body : JSON.stringify(new Message('Kristian',event.target.value)),
+                        //body : JSON.stringify(new Message()),
                         //headers: {'Content-Type' : 'application/json; charset=UTF-8'}
                     })
                     .then(response => {
@@ -32,35 +29,19 @@ class ChatAppMessages {
                     })
                     .catch(exception => console.log("Error: " + exception));
         };
-        //this.load(sender, receiver);
 
         this.intervalID = setInterval(
-                (function (self) {         //Self-executing func which takes 'this' as self
-                    return function () {   //Return a function in the context of 'self'
-                        self.load(sender, receiver); //Thing you wanted to run as non-window 'this'
+                (function (self) {         
+                    return function () {  
+                        self.load(sender, receiver); 
                     }
                 })(this),
-                500     //normal interval, 'this' scope not impacted here.
+                500    
                 );
 
-        /*
-         this.worker = new Worker("worker.js");
-         this.worker.postMessage({"sender" : sender, "receiver" : receiver});
-         
-         this.worker.onmessage = event => {
-         this.forum.innerHTML = '';
-         let ul = document.createElement('ul');
-         event.data.map(message => {
-         let li = document.createElement('li');
-         li.innerHTML = `${message.user} - ${message.text}`;
-         ul.appendChild(li);
-         });
-         this.forum.appendChild(ul);
-         this.forum.scrollTop = this.forum.scrollHeight;
-         };  
-         */
-
     }
+    
+    // Fetches the messages between two users stored in the database
     load(sender, receiver) {
         fetch('api/conversations/getConversation?user1=' + sender + '&user2=' + receiver)
                 .then(response => {
@@ -72,12 +53,15 @@ class ChatAppMessages {
                 .then(json => this.addMessages(json, sender, receiver))
                 .catch(e => console.log("Error!: " + e.message));
     }
+    
+    // Adds messages to the user interface so that the users can see them.
+    // Only adds a message if it is a new message. If the message is already
+    // on screen it will ignore it.
     addMessages(json, sender, receiver) {
         if(this.lastMessageID == 0){
             this.messages.innerHTML = '';
         }
         
-        //console.log("Lengde: " + (json.length - 1));
         console.log(this.lastMessageID);
         for (let i = 0; i < json.length; i++) {
             if(this.lastMessageID < json[i].messageID){
@@ -95,40 +79,18 @@ class ChatAppMessages {
                 
                 this.lastMessageID = json[i].messageID;
             }
-            
-             // if json i messageid is smaller then lastmessageid then add new message to conversation 
-             // if not then do nothing!
-             
-                    
-            //console.log("i: " + i);
-            //let li = document.createElement('li');
-            /*
-            li.innerHTML = json[i].messageBody;
-            if(json[i].sender == sender){
-                li.setAttribute("id", "left-float");
-            }else{
-               li.setAttribute("id", "right-float"); 
-            }
-            */
-           /*
-            if(i == (json.length - 1)){
-                this.lastMessageID = json[i].messageID;
-                console.log(this.lastMessageID);
-            }
-            */
-            //console.log(json[i].messageID + " " + json[i].sender + " " + json[i].receiver + " " + json[i].messageBody + " " + json[i].version);
-                   
-            //this.messages.appendChild(li);
-            //this.scrollToBottom();
         }
     }
 
+    // Scrolls the conversation window to the bottom to show that a new message
+    // have been received.
     scrollToBottom() {
         var objDiv = document.getElementById("messages");
         objDiv.scrollTop = objDiv.scrollHeight;
         
     }
 
+    // Gets the variables from the URL
     getQueryVariable(variable)
     {
         var query = window.location.search.substring(1);
@@ -142,20 +104,18 @@ class ChatAppMessages {
         return(false);
     }
 
+    // Used to check if a user should have access to this page. 
+    // If not the user will be redirected to the login page.
     checkCookie() {
         var user = getCookie("ChatApp");
         if (user != "") {
             document.getElementById("name").innerHTML = "Welcome, " + user;
-            //alert("Welcome again " + user);
         } else {
             window.location.href = 'index.html';
-            //user = prompt("Please enter your name:", "");
-            //if (user != "" && user != null) {
-            //    setCookie("username", user, 365);
-            //}
         }
     }
-
+    
+    // Returns the username that is stored in the cookie.
     getCookie(cname) {
         var name = cname + "=";
         var ca = document.cookie.split(';');

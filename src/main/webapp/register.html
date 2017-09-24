@@ -22,6 +22,10 @@
         </section>
 
         <script>
+            // Function used to validate the input values and to send those
+            // to the database. 
+            // When user is successfully registered, the user is sent to 
+            // the login page to log in to their newly created account.
             function validateForm() {
                 
                 var un = document.loginform.usr.value;
@@ -29,12 +33,11 @@
 
                 if(un != "" && pw != ""){
                     
-                    //add user
-                    
-                     fetch('api/users/add?username=' + un + '&password=' + pw,
+                    // add user
+                    fetch('api/users/add?username=' + un + '&password=' + pw,
                     {
                         method: 'POST',
-                        //body : JSON.stringify(new Message('Kristian',event.target.value)),
+                        //body : JSON.stringify(new Message()),
                         //headers: {'Content-Type' : 'application/json; charset=UTF-8'}
                     })
                     .then(response => {
@@ -49,7 +52,6 @@
                     })
                     .catch(exception => console.log("Error: " + exception));
                     
-                    //alert("Registration was successfull!");
                     return true;
                 }   
                 else {

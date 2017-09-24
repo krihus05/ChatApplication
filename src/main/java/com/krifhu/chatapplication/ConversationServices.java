@@ -22,7 +22,9 @@ import javax.json.JsonObject;
 import jdk.nashorn.internal.parser.JSONParser;
 
 /**
- *
+ * This class is used for actions related to conversations. This means
+ * getting the messages between two users or adding a new message to the
+ * database.
  * @author Kristian
  */
 @Stateless
@@ -34,6 +36,11 @@ public class ConversationServices {
     @PersistenceContext
     EntityManager em;
     
+    /**
+     * This method returns a list of all messages in the system. This method 
+     * is not currently in use in the system.
+     * @return 
+     */
     @GET
     @Path("getAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -44,6 +51,15 @@ public class ConversationServices {
         return result != null ? result : Collections.EMPTY_LIST;
     }
     
+    /**
+     * This methods returns a list of all messages between two users. This
+     * method is called when a user clicks on another users name in the list.
+     * If there are messages between the two already those will then be
+     * displayed to the in the conversation window.
+     * @param user1
+     * @param user2
+     * @return 
+     */
     @GET
     @Path("getConversation")
     @Produces(MediaType.APPLICATION_JSON) 
@@ -56,6 +72,13 @@ public class ConversationServices {
         return result != null ? result : Collections.EMPTY_LIST;
     }
     
+    /**
+     * This method is used to add a new message to the database.
+     * @param sender
+     * @param receiver
+     * @param messageBody
+     * @return 
+     */
     @POST
     @Path("add")
     public Response addMessage(@QueryParam("sender") String sender, @QueryParam("receiver") String receiver, @QueryParam("messageBody") String messageBody) {
@@ -72,11 +95,7 @@ public class ConversationServices {
                 .add("Status", "OK")
                 .build();
         builder.add(obj1);
-        //JSONParser parser = new JSONParser();
-        //JSONObject json = (JSONObject) parser.parse(stringToParse);
-        //JSONObject jsonObj = new JSONObject(sender);
-        
-        //return Response.ok(sender).build();
+
         return Response.ok(builder.build()).build();
     }  
 }

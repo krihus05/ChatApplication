@@ -25,7 +25,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
+ * The methods in this class are all related to processing request towards 
+ * users in the database. This means actions such as getting a list of users
+ * that can be talked to, getting a specific user or adding a new user to the 
+ * system.
  * @author Kristian
  */
 @Stateless
@@ -37,6 +40,10 @@ public class ChatServices {
     @PersistenceContext
     EntityManager em;
     
+    /**
+     * returns a list of all users in the database
+     * @return
+     */
     @GET
     @Path("get")
     @Produces(MediaType.APPLICATION_JSON)
@@ -47,6 +54,11 @@ public class ChatServices {
         return result != null ? result : Collections.EMPTY_LIST;
     }
     
+    /**
+     * Returns information about a specific user in the database
+     * @param username
+     * @return 
+     */
     @GET
     @Path("getUser")
     @Produces(MediaType.APPLICATION_JSON) 
@@ -58,6 +70,12 @@ public class ChatServices {
         return result != null ? result : Collections.EMPTY_LIST;
     }
     
+    /**
+     * This method is used to add a user to the database
+     * @param username
+     * @param password
+     * @return 
+     */
     @POST
     @Path("add")
     public Response addUser(@QueryParam("username") String username, @QueryParam("password") String password) {
@@ -79,7 +97,13 @@ public class ChatServices {
         return Response.noContent().build();
     }
     
-    
+    /**
+     * This is just a method used for testing purposes, not currently in use in 
+     * the system.
+     * @param username
+     * @param userID
+     * @return 
+     */
     @GET
     @Path("getTest")
     @Produces(MediaType.APPLICATION_JSON) 
